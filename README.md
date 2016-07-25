@@ -36,7 +36,7 @@ python train.py 0.1 60
 
 ##Run
 
-To run the car autonomously, use ```autonomous.py``` which takes an optional argument of the model to be used, the latest model file in the ```optimized_thetas``` folder by default.
+To run the car autonomously, use ```autonomous.py``` which takes an optional argument of the model to be used, the latest model file in the ```optimized_thetas``` folder will be used by default.
 
 ```
 python autonomous.py
