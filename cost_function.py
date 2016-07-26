@@ -62,11 +62,11 @@ def gradients(gradient_parameters):
     output_layer_input = numpy.c_[numpy.ones(hidden_layer_output.shape[0]), hidden_layer_output].dot(theta_2.T)
     output = sigmoid(output_layer_input)
 
-    d3 = output - y_values
-    d2 = d3.dot(theta_2[:, 1:]) * sigmoid_gradient(hidden_layer_input)
+    errors = output - y_values
+    backpropagated_errors = errors.dot(theta_2[:, 1:]) * sigmoid_gradient(hidden_layer_input)
 
-    delta_1 = d2.T.dot(numpy.c_[numpy.ones(input_examples_size), x_values])
-    delta_2 = d3.T.dot(numpy.c_[numpy.ones(hidden_layer_output.shape[0]), hidden_layer_output])
+    delta_1 = backpropagated_errors.T.dot(numpy.c_[numpy.ones(input_examples_size), x_values])
+    delta_2 = errors.T.dot(numpy.c_[numpy.ones(hidden_layer_output.shape[0]), hidden_layer_output])
 
     theta_1[:, 0] = 0
     theta_2[:, 0] = 0
