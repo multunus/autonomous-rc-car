@@ -1,6 +1,6 @@
 # autonomous-rc-car
 
-In this tutorial, we will be building an autonomous car using supervised learning of a neural network with a single hidden layer. We have modified a remote controlled car such that the dependency on the RF remote controller has been removed. The motors controlling the forward/reverse direction and the left/right direction are being controlled by a Raspberry Pi via a L293D Motor Driver IC.
+In this tutorial, we will be building an autonomous car using supervised learning of a neural network with a single hidden layer. We have modified a remote controlled car such that the dependency on the RF remote controller has been removed. The motors controlling the forward/reverse direction and the left/right direction are being controlled by a Raspberry Pi via an L293D Motor Driver IC.
 
 ##Configuration
 
@@ -41,6 +41,19 @@ To run the car autonomously, use ```autonomous.py``` which takes an optional arg
 ```
 python autonomous.py
 ```
+
+We are reducing the speed of the car when a turn is predicted by the model. This is not being done by the neural network, though we hope to add a speed component in the future.
+
+##To be implemented
+
+We intend to add the following capabilities in the future:
+* Control speed of the car using neural networks
+* Stop signal detection
+* Obstacle  detection
+
+##Special Thanks
+
+Thanks to [Andrew Ng](http://www.andrewng.org/) for his [Coursera course](http://www.coursera.org/learn/machine-learning) on Machine Learning.
 
 ##About
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Interactive control for the remote radio control Raspberry Pi."""
+"""Interactive control for the car"""
 import time
 import io
 import pygame
