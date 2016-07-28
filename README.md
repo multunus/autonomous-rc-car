@@ -38,7 +38,7 @@ The images are loaded from the corresponding class folders and are assigned the 
 
 ##Run
 
-Once we have the trained model, the RC car is run autonomously using ```autonomous.py``` which takes an optional argument for the trained model; default will use the latest model in the ```optimized_thetas folder```. At the command prompt, run the following command:
+Once we have the trained model, the RC car is run autonomously using ```autonomous.py``` which takes an optional argument for the trained model; default will use the latest model in the ```optimized_thetas``` folder. At the command prompt, run the following command:
 
 ```
 python autonomous.py
