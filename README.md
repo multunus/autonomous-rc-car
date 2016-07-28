@@ -1,50 +1,52 @@
 # autonomous-rc-car
 
-This project aims to build an autonomous car using supervised learning of a neural network with a single hidden layer. We have not used any Machine Learning libraries since we wanted to implement the neural network from scratch to understand the concepts better. We have modified a remote controlled car such that the dependency on the RF remote controller has been removed. The motors controlling the forward/reverse direction and the left/right direction are being controlled by a Raspberry Pi via an L293D Motor Driver IC.
+This project aims to build an autonomous car using supervised learning of a neural network with a single hidden layer. We have not used any Machine Learning libraries since we wanted to implement the neural network from scratch to understand the concepts better. We have modified a remote controlled car to remove the dependency on the RF remote controller. A Raspberry Pi controls the DC motors via an L293D Motor Driver IC.
 
 ##Configuration
 
-The motor controlling the forward/reverse direction will be referred to as the back motor. The inputs to Motor 1 of the L293D Motor Driver IC are connected to the ```BACK_MOTOR_DATA_ONE``` and ```BACK_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi. The enable pin for Motor 1 is connected to the ```BACK_MOTOR_ENABLE_PIN``` GPIO pin of the Raspberry Pi. The output pins for Motor 1 are connected to the back motor of the car.
+We will be referring the DC motor controlling the left/right direction as the front motor and the motor controlling the forward/reverse direction as the back motor. Connect the ```BACK_MOTOR_DATA_ONE``` and ```BACK_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi to the Input pins for Motor 1(Input 1, Input 2) and the ```BACK_MOTOR_ENABLE_PIN``` GPIO pin to the Enable pin for Motor 1(Enable 1,2) in the L293D Motor Driver IC. Connect the Output pins for Motor 1(Output 1, Output 2) of the IC to the back motor.
 
-The motor controlling the left/right direction will be referred to as the front motor. The inputs to Motor 2 of the L293D Motor Driver IC are connected to the ```FRONT_MOTOR_DATA_ONE``` and ```FRONT_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi. The output pins for Motor 2 are connected to the front motor of the car.
+Connect the ```FRONT_MOTOR_DATA_ONE``` and ```FRONT_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi to the Input pins for Motor 2(Input 3, Input 4) in the IC. Connect the Output pins for Motor 2(Output 3, Output 4) of the IC to the front motor.
 
 The ```PWM_FREQUENCY``` and ```INITIAL_PWM_DUTY_CYCLE``` represent the initial frequency and duty cycle of the PWM output.
 
-We have created five class labels namely ```forward```, ```reverse```, ```left```, ```right``` and ```idle``` and assigned the expected values for each class label. All class labels would require a folder of the same name to be present in the current directory.
+We have created five class labels namely ```forward```, ```reverse```, ```left```, ```right``` and ```idle``` and assigned their expected values. All class labels would require a folder of the same name to be present in the current directory.
 
-The input images will be resized to the dimension of the ```IMAGE_DIMENSION``` tuple value. The ```LAMBDA``` and ```HIDDEN_LAYER_SIZE``` values represent the default lambda value and the number of nodes in the hidden layer while training the neural network.
+The input images resize to the dimension of the ```IMAGE_DIMENSION``` tuple value during training. The ```LAMBDA``` and ```HIDDEN_LAYER_SIZE``` values represent the default lambda value and the number of nodes in the hidden layer while training the neural network.
 
-All these values can be configured in ```configuration.py```.
+All these values are configurable in ```configuration.py```.
 
 ##Setup
 
-The images for training can be captured using ```interactive_control_train.py```, the car can be controlled using the direction arrows and all the images will be captured in the same folder along with the corresponding key press.
+The images for training are captured using ```interactive_control_train.py```, the car is controlled using the direction arrows and all the images are recorded in the same folder along with the corresponding key press. At the command prompt, run the following command:
 
 ```
 python interactive_control_train.py
 ```
 
-Once enough images have been collected, it should be segregated into the corresponding class folders. This approach has been adopted to ensure that the data will be tidied up before it is input to the neural network.
+Data cleaning is done before segregating the images into their respective class folders based on the key press indicated in their filenames.
 
 ##Train
 
-After the images have been placed in their corresponding class folders, the neural network is trained using ```train.py``` which takes two optional arguments - ```lambda``` and ```hidden layer size```, the values set in the configuration file will be used by default. The images are loaded from the corresponding class folders and are assigned the class values indicated in the configuration file. The generated model is stored in the ```optimized_thetas``` folder as a pickle file.
+After segregating the images into their corresponding class folders, the neural network is trained using ```train.py``` which takes two optional arguments - ```lambda``` and ```hidden layer size```;  default values would be those specified in the configuration file. At the command prompt, run the following command:
 
 ```
 python train.py 0.1 60
 ```
 
+The images are loaded from the corresponding class folders and are assigned the class values indicated in the configuration file. The generated model is stored in the ```optimized_thetas``` folder as a pickle file.
+
 ##Run
 
-To run the car autonomously, use ```autonomous.py``` which takes an optional argument of the model to be used, the latest model file in the ```optimized_thetas``` folder will be used by default.
+Once we have the trained model, the RC car is run autonomously using ```autonomous.py``` which takes an optional argument for the trained model; default will use the latest model in the ```optimized_thetas folder```. At the command prompt, run the following command:
 
 ```
 python autonomous.py
 ```
 
-We are reducing the speed of the car when a turn is predicted by the model. This is not being done by the neural network, though we hope to add a speed component in the future.
+We are reducing the speed of the car when the model predicts a turn. The reduction is not being made by the neural network, though we hope to add a speed component in the future.
 
-##To be implemented
+##Planned features
 
 We intend to add the following capabilities in the future:
 * Control speed of the car using neural networks
