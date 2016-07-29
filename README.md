@@ -1,6 +1,6 @@
 # autonomous-rc-car
 
-This project aims to build an autonomous car using supervised learning of a neural network with a single hidden layer. We have not used any Machine Learning libraries since we wanted to implement the neural network from scratch to understand the concepts better. We have modified a remote controlled car to remove the dependency on the RF remote controller. A Raspberry Pi controls the DC motors via an L293D Motor Driver IC.
+This project aims to build an autonomous rc car using supervised learning of a neural network with a single hidden layer. We have not used any Machine Learning libraries since we wanted to implement the neural network from scratch to understand the concepts better. We have modified a remote controlled car to remove the dependency on the RF remote controller. A Raspberry Pi controls the DC motors via an L293D Motor Driver IC. You can find a post explaining this project in detail [here](http://www.multunus.com/blog/2016/07/autonomous-rc-car-using-raspberry-pi-and-neural-networks/). Here's a video of the car in action.
 
 [![Autonomous RC car](https://img.youtube.com/vi/dCyBvLjW6X0/maxresdefault.jpg)](https://www.youtube.com/watch?v=dCyBvLjW6X0&vq=hd1080)
 
