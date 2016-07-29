@@ -2,6 +2,8 @@
 
 This project aims to build an autonomous car using supervised learning of a neural network with a single hidden layer. We have not used any Machine Learning libraries since we wanted to implement the neural network from scratch to understand the concepts better. We have modified a remote controlled car to remove the dependency on the RF remote controller. A Raspberry Pi controls the DC motors via an L293D Motor Driver IC.
 
+[![Autonomous RC car](https://img.youtube.com/vi/dCyBvLjW6X0/maxresdefault.jpg)](https://www.youtube.com/watch?v=dCyBvLjW6X0&vq=hd1080)
+
 ##Configuration
 
 We will be referring the DC motor controlling the left/right direction as the front motor and the motor controlling the forward/reverse direction as the back motor. Connect the ```BACK_MOTOR_DATA_ONE``` and ```BACK_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi to the Input pins for Motor 1(Input 1, Input 2) and the ```BACK_MOTOR_ENABLE_PIN``` GPIO pin to the Enable pin for Motor 1(Enable 1,2) in the L293D Motor Driver IC. Connect the Output pins for Motor 1(Output 1, Output 2) of the IC to the back motor.
