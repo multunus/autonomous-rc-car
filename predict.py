@@ -9,6 +9,7 @@ from numpy import c_, asarray
 from scipy.misc import imresize
 from sigmoid import sigmoid
 from configuration import CLASSIFICATION_LABELS, IMAGE_DIMENSIONS
+from configuration import PICAMERA_RESOLUTION_WIDTH, PICAMERA_RESOLUTION_HEIGHT
 
 class Predictor:
     """Predictor class for determining direction"""
@@ -52,7 +53,7 @@ class Predictor:
 def _convert_stream_to_array(stream):
     stream.seek(0)
     image = Image.open(stream).convert('L')
-    image = image.crop((0, 240, 640, 480))
+    image = image.crop((0, PICAMERA_RESOLUTION_HEIGHT / 2, PICAMERA_RESOLUTION_WIDTH, PICAMERA_RESOLUTION_HEIGHT))
     image_array = asarray(image)
     resized_image_array = imresize(image_array, IMAGE_DIMENSIONS)
     input_layer_size = resized_image_array.flatten().shape[0]

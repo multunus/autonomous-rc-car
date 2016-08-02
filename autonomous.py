@@ -4,6 +4,7 @@ import time
 import sys
 import io
 import picamera
+import configuration
 from predict import Predictor
 import helpers.motor_driver as motor_driver_helper
 import helpers.image as image_helper
@@ -12,9 +13,9 @@ def autonomous_control(model):
     """Run the car autonomously"""
     predictor = Predictor(model)
     with picamera.PiCamera() as camera:
-        camera.resolution = (640, 480)
-        camera.framerate = 60
-        time.sleep(2)
+        camera.resolution = configuration.PICAMERA_RESOLUTION
+        camera.framerate = configuration.PICAMERA_FRAMERATE
+        time.sleep(configuration.PICAMERA_WARM_UP_TIME)
         pwm = motor_driver_helper.get_pwm_imstance()
         motor_driver_helper.start_pwm(pwm)
         forward_cycle_count = left_cycle_count = right_cycle_count = 0
