@@ -4,8 +4,9 @@ import os
 import glob
 import operator
 import pickle
-from numpy import c_
-from scipy.misc import imread, imresize
+from PIL import Image
+from numpy import c_, asarray
+from scipy.misc import imresize
 from sigmoid import sigmoid
 from configuration import CLASSIFICATION_LABELS, IMAGE_DIMENSIONS
 
@@ -26,9 +27,9 @@ class Predictor:
         self.thetas = self.model['optimized_theta']
         self.hidden_layer_size = self.model['hidden_layer_size']
 
-    def predict(self, image):
+    def predict(self, stream):
         """Predicts the direction of movement based on the NN response"""
-        input_layer_size, number_of_labels, x_value = _convert_image_to_array(image)
+        input_layer_size, number_of_labels, x_value = _convert_stream_to_array(stream)
         theta1_params = self.thetas[0: (self.hidden_layer_size * (input_layer_size + 1))]
         theta2_params = self.thetas[(self.hidden_layer_size * (input_layer_size + 1)):]
         theta_1 = theta1_params.reshape(self.hidden_layer_size, input_layer_size + 1)
@@ -48,8 +49,11 @@ class Predictor:
         self._open_model_file(model_file)
 
 
-def _convert_image_to_array(image):
-    image_array = imread(image, flatten=True)
+def _convert_stream_to_array(stream):
+    stream.seek(0)
+    image = Image.open(stream).convert('L')
+    image = image.crop((0, 240, 640, 480))
+    image_array = asarray(image)
     resized_image_array = imresize(image_array, IMAGE_DIMENSIONS)
     input_layer_size = resized_image_array.flatten().shape[0]
     number_of_labels = len(CLASSIFICATION_LABELS)

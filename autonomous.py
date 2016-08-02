@@ -22,10 +22,8 @@ def autonomous_control(model):
 
         while True:
             stream = io.BytesIO()
-            filename = 'image%s.jpg' % ("-" + str(time.time()))
             camera.capture(stream, format='jpeg', use_video_port=True)
-            image_helper.save_image_with_filename(stream, filename)
-            direction = predictor.predict(filename)
+            direction = predictor.predict(stream)
             image_helper.save_image_with_direction(stream, direction)
             stream.flush()
             if direction == 'forward':
