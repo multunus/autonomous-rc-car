@@ -6,9 +6,11 @@ This project aims to build an autonomous rc car using supervised learning of a n
 
 ##Configuration
 
-We will be referring the DC motor controlling the left/right direction as the front motor and the motor controlling the forward/reverse direction as the back motor. Connect the ```BACK_MOTOR_DATA_ONE``` and ```BACK_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi to the Input pins for Motor 1(Input 1, Input 2) and the ```BACK_MOTOR_ENABLE_PIN``` GPIO pin to the Enable pin for Motor 1(Enable 1,2) in the L293D Motor Driver IC. Connect the Output pins for Motor 1(Output 1, Output 2) of the IC to the back motor.
+![Rc car controller circuit diagram](https://s3.amazonaws.com/multunus-images/rc_car_circuit_diagram.png)
 
-Connect the ```FRONT_MOTOR_DATA_ONE``` and ```FRONT_MOTOR_DATA_TWO``` GPIO pins of the Raspberry Pi to the Input pins for Motor 2(Input 3, Input 4) in the IC. Connect the Output pins for Motor 2(Output 3, Output 4) of the IC to the front motor.
+We will be referring the DC motor controlling the left/right direction as the front motor and the motor controlling the forward/reverse direction as the back motor. Connect the ```BACK_MOTOR_DATA_ONE``` and ```BACK_MOTOR_DATA_TWO``` GPIO pins(`GPIO17` and `GPIO27`) of the Raspberry Pi to the Input pins for Motor 1(`Input 1`, `Input 2`) and the ```BACK_MOTOR_ENABLE_PIN``` GPIO pin(`GPIO22`) to the Enable pin for Motor 1(`Enable 1,2`) in the L293D Motor Driver IC. Connect the Output pins for Motor 1(`Output 1`, `Output 2`) of the IC to the back motor.
+
+Connect the ```FRONT_MOTOR_DATA_ONE``` and ```FRONT_MOTOR_DATA_TWO``` GPIO pins(`GPIO19` and `GPIO26`) of the Raspberry Pi to the Input pins for Motor 2(`Input 3`, `Input 4`) in the IC. Connect the Output pins for Motor 2(`Output 3`, `Output 4`) of the IC to the front motor.
 
 The ```PWM_FREQUENCY``` and ```INITIAL_PWM_DUTY_CYCLE``` represent the initial frequency and duty cycle of the PWM output.
 
