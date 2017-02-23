@@ -37,7 +37,7 @@ Data cleaning is done before segregating the images into their respective class 
 After segregating the images into their corresponding class folders, the neural network is trained using ```train.py``` which takes two optional arguments - ```lambda``` and ```hidden layer size```;  default values would be those specified in the configuration file. At the command prompt, run the following command:
 
 ```
-python train.py 0.1 60
+python train.py 0.1 100
 ```
 
 The images are loaded from the corresponding class folders and are assigned the class values indicated in the configuration file. The generated model is stored in the ```optimized_thetas``` folder as a pickle file. Here's a sample [dataset](https://s3.amazonaws.com/multunus-machine-learning/autonomous-rc-car-data-set.tar.gz) and [trained model](https://s3.amazonaws.com/multunus-machine-learning/model_2016-07-20_19-38-07_l0.05_h114.pkl) to get you started.
