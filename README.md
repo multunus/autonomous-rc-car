@@ -6,7 +6,7 @@ This project aims to build an autonomous rc car using supervised learning of a n
 
 [![Autonomous RC car](https://img.youtube.com/vi/dCyBvLjW6X0/maxresdefault.jpg)](https://www.youtube.com/watch?v=dCyBvLjW6X0&vq=hd1080)
 
-##Configuration
+## Configuration
 
 ![Rc car controller circuit diagram](https://s3.amazonaws.com/multunus-images/rc_car_circuit_diagram.png)
 
@@ -22,7 +22,7 @@ The input images resize to the dimension of the ```IMAGE_DIMENSION``` tuple valu
 
 All these values are configurable in ```configuration.py```.
 
-##Setup
+## Setup
 
 The images for training are captured using ```interactive_control_train.py```, the car is controlled using the direction arrows and all the images are recorded in the same folder along with the corresponding key press. At the command prompt, run the following command:
 
