@@ -32,7 +32,7 @@ python interactive_control_train.py
 
 Data cleaning is done before segregating the images into their respective class folders based on the key press indicated in their filenames.
 
-##Train
+## Train
 
 After segregating the images into their corresponding class folders, the neural network is trained using ```train.py``` which takes two optional arguments - ```lambda``` and ```hidden layer size```;  default values would be those specified in the configuration file. At the command prompt, run the following command:
 
@@ -42,7 +42,7 @@ python train.py 0.1 100
 
 The images are loaded from the corresponding class folders and are assigned the class values indicated in the configuration file. The generated model is stored in the ```optimized_thetas``` folder as a pickle file. Here's a sample [dataset](https://s3.amazonaws.com/multunus-machine-learning/autonomous-rc-car-data-set.tar.gz) and [trained model](https://s3.amazonaws.com/multunus-machine-learning/model_2016-07-20_19-38-07_l0.05_h114.pkl) to get you started.
 
-##Run
+## Run
 
 Once we have the trained model, the RC car is run autonomously using ```autonomous.py``` which takes an optional argument for the trained model; default will use the latest model in the ```optimized_thetas``` folder. At the command prompt, run the following command:
 
@@ -52,18 +52,18 @@ python autonomous.py
 
 We are reducing the speed of the car when the model predicts a turn. The reduction is not being made by the neural network, though we hope to add a speed component in the future.
 
-##Planned features
+## Planned features
 
 We intend to add the following capabilities in the future:
 * Control speed of the car using neural networks
 * Stop signal detection
 * Obstacle  detection
 
-##Special Thanks
+## Special Thanks
 
 Thanks to [Andrew Ng](http://www.andrewng.org/) for his [Coursera course](http://www.coursera.org/learn/machine-learning) on Machine Learning.
 
-##About
+## About
 
 [![Multunus logo](https://camo.githubusercontent.com/c0701d8866d0962ddc36db56dbf1ce93d712800e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6d756c74756e75732d696d616765732f4d756c74756e75735f4c6f676f5f566563746f725f726573697a65642e706e67)](http://www.multunus.com/?utm_source=github)
 
