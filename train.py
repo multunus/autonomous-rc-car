@@ -5,13 +5,15 @@ import glob
 import datetime
 import time
 import pickle
-from numpy import array, zeros, r_
+from PIL import Image
+from numpy import array, zeros, r_, asarray
 from numpy.random import seed, randn
 from cost_function import cost_function, gradients
 from scipy.optimize import fmin_l_bfgs_b
 from scipy.misc import imread, imresize
 from configuration import CLASSIFICATION_LABELS_AND_VALUES, IMAGE_DIMENSIONS
 from configuration import LAMBDA, HIDDEN_LAYER_SIZE, CLASSIFICATION_LABELS
+from configuration import PICAMERA_RESOLUTION_HEIGHT, PICAMERA_RESOLUTION_WIDTH
 
 def load_images_to_array(classification_label_and_values):
     """Loads images to array"""
@@ -20,7 +22,9 @@ def load_images_to_array(classification_label_and_values):
     print("Loading images to array...")
     for class_label, class_value in classification_label_and_values.iteritems():
         for filename in glob.glob("./"+class_label+"/*"):
-            image_array = imread(filename, flatten=True)
+            image = Image.open(filename).convert('L')
+            image = image.crop((0, PICAMERA_RESOLUTION_HEIGHT / 2, PICAMERA_RESOLUTION_WIDTH, PICAMERA_RESOLUTION_HEIGHT))
+            image_array = asarray(image)
             resized_image_array = imresize(image_array, IMAGE_DIMENSIONS)
             training_image_array = r_[training_image_array, [resized_image_array.flatten()]]
             training_image_value = r_[training_image_value, [class_value]]
